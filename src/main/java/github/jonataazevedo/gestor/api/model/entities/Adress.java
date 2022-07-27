@@ -1,7 +1,10 @@
-package github.jonataazevedo.gestor.api.model.entites;
+package github.jonataazevedo.gestor.api.model.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
@@ -16,10 +19,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Adress {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
 	@NotBlank
 	@Column(nullable = false)
-	private String CEP;
+	private String cep;
 
 	@NotBlank
 	@Column(nullable = false)
