@@ -1,11 +1,14 @@
 package github.jonataazevedo.gestor.api.model.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
@@ -18,10 +21,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Adress {
+public class Adress implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
 	private int id;
 
 	@NotBlank
@@ -40,6 +46,7 @@ public class Adress {
 	@Column(nullable = false)
 	private String city;
 	
-	@OneToMany(mappedBy = "id_person")
+	@ManyToOne
+	@JoinColumn(name = "id_person", referencedColumnName = "id")
 	private Person person;
 }
