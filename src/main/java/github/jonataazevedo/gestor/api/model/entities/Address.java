@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,14 +23,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Adress implements Serializable {
+public class Address implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private int id;
+	private Integer id;
 
 	@NotBlank
 	@Column(nullable = false)
@@ -46,7 +48,8 @@ public class Adress implements Serializable {
 	@Column(nullable = false)
 	private String city;
 	
+	@JsonBackReference
 	@ManyToOne
-	@JoinColumn(name = "id_person", referencedColumnName = "id")
+	@JoinColumn(name = "id_person")
 	private Person person;
 }

@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AdressRequestDTO implements Serializable {
+public class AddressRequestDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

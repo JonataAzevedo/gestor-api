@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,7 +33,7 @@ public class Person implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private int id;
+	private Integer id;
 
 	@NotBlank
 	@Column(nullable = false)
@@ -38,7 +42,8 @@ public class Person implements Serializable{
 	@NotBlank
 	@Column(nullable = false)
 	private LocalDate birthDate;
-
-	@OneToMany(mappedBy = "person")
-	private List<Adress> adresses;
+	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+	private List<Address> addresses;
 }

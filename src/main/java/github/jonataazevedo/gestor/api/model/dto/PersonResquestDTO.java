@@ -21,6 +21,5 @@ public class PersonResquestDTO implements Serializable{
 	
 	private LocalDate birthDate;
 	
-	private List<AdressRequestDTO> adresses;
-	
+	private List<AddressRequestDTO> addresses;
 }
